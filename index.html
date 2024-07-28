@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katinator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="cat1">
+    <div class="center" id="form">
+        <input class="glass" id="number" type="number">
+    </div>
+    <div id="area"></div>
+
+    <script>
+        const DELAY = 2000;
+
+        let level = 0;
+        let last = 0;
+        let number;
+        let audio;
+
+        document.getElementById('area').onclick = function(event) {
+            if (Date.now() - last < DELAY)
+                return;
+
+            if (level == 0) hide();
+            if (level == 1) play();
+            if (level == 2) stop();
+            if (level == 3) swap();
+
+            ++level;
+            last = Date.now();
+        }
+
+        hide = function() {
+            number = parseInt(document.getElementById('number').value);
+            document.body.removeChild(document.getElementById('form'));
+        }
+
+        play = function() {
+            if (number === undefined)
+                return;
+
+            let path = String(number) + '.mp3';
+            audio = new Audio(path);
+            audio.play();
+        }
+
+        stop = function() {
+            if (audio !== undefined) {
+                audio.pause();
+                audio.currentTime = 0;
+                audio = undefined;
+            }
+        }
+
+        swap = function() {
+            document.body.classList.remove('cat');
+            document.body.classList.add('cat2');
+        }
+    </script>
+</body>
+
+</html>
