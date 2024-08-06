@@ -5,50 +5,38 @@ const texts = [
     'Hehehe Miau!'
 ]
 
-const textElement = document.getElementById('text');
-let textIndex = 0;
 let index = 0;
-let content = '';
 
 type = function() {
-    const text = texts[textIndex];
-
-    if (index < text.length) {
-        content += text.charAt(index);
-        textElement.innerText = content;
-        ++index;
-        setTimeout(type, 1);
-    } else {
-        ++textIndex;
-        index = 0;
-        content = '';
-    }
+    const text = texts[index++];
+    const element = document.getElementById('text');
+    element.style.animation = 'none';
+    element.offsetHeight;
+    element.style.animation = null;
+    element.innerText = text;
 }
 
-let clickIndex = 0;
+let click = 0;
 document.getElementById('area').onclick = function() {
     type();
-
-    if (clickIndex == 1)
+    if (click == 1)
         process();
-
-    if (clickIndex == 3)
+    if (click == 3)
         swap_background();
-
-    ++clickIndex;
+    ++click;
 }
 
 process = function() {
-    setTimeout(show_wheel, 1 * 1000);
-    setTimeout(hide_wheel, 1 * 1000 + 2 * 1000);
+    setTimeout(show_wheel, 10 * 1000);
+    setTimeout(hide_wheel, 10 * 1000 + 4 * 1000);
 }
 
 show_wheel = function() {
-    const wheelElement = document.createElement('div');
-    wheelElement.id = 'wheel';
-    wheelElement.classList = 'container';
-    wheelElement.innerHTML = '<div class="loader"></div>'
-    document.getElementById('area').appendChild(wheelElement);
+    const element = document.createElement('div');
+    element.id = 'wheel';
+    element.classList = 'container';
+    element.innerHTML = '<div class="loader"></div>'
+    document.getElementById('area').appendChild(element);
 }
 
 hide_wheel = function() {

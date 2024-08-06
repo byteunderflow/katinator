@@ -13,31 +13,6 @@ body {
     background-size: cover;
 }
 
-input {
-    padding: 3vh;
-    margin: 1vh;
-    border: none;
-    border-radius: 25px;
-    font-size: large;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: 700;
-}
-
-input:focus {
-    outline: none;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-input[type=number] {
-    appearance: textfield;
-    -moz-appearance: textfield;
-}
-
 p {
     margin: 1vh;
     color: #E5E4E2;
@@ -46,11 +21,16 @@ p {
     text-align: center;
     text-shadow: 3px 5px 2px #474747;
     line-height: 1;
+    animation: appear 3s linear forwards;
 }
 
-.center {
-    display: flex;
-    justify-content: center;
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 #area {
