@@ -1,7 +1,8 @@
 const texts = [
     'Miau! Ich bin Katinator und kann deine Gedanken lesen. Hehehe',
-    'Schau mir tief in meine bezaubernden Augen und denke an deinen Song!',
-    'Miau'
+    'Schaue mir tief in meine bezaubernden Augen und denke an deinen Song!',
+    'Eine Pfote wäscht die andere, hehe. Jetzt will ich mein Gold!',
+    'Hehehe Miau!'
 ]
 
 const textElement = document.getElementById('text');
@@ -11,6 +12,7 @@ let content = '';
 
 type = function() {
     const text = texts[textIndex];
+
     if (index < text.length) {
         content += text.charAt(index);
         textElement.innerText = content;
@@ -23,28 +25,40 @@ type = function() {
     }
 }
 
-random = function(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
 let clickIndex = 0;
 document.getElementById('area').onclick = function() {
-    if (clickIndex < 2)
-        type();
-    ++clickIndex;
+    type();
 
-    if (clickIndex == 2) {
+    if (clickIndex == 1)
         process();
-    }
+
+    if (clickIndex == 3)
+        swap_background();
+
+    ++clickIndex;
 }
 
 process = function() {
-    setTimeout(wheel, 1 * 1000);
+    setTimeout(show_wheel, 1 * 1000);
+    setTimeout(hide_wheel, 1 * 1000 + 2 * 1000);
 }
 
-wheel = function() {
+show_wheel = function() {
     const wheelElement = document.createElement('div');
-    wheelElement.classList = 'loader-container';
+    wheelElement.id = 'wheel';
+    wheelElement.classList = 'container';
     wheelElement.innerHTML = '<div class="loader"></div>'
     document.getElementById('area').appendChild(wheelElement);
+}
+
+hide_wheel = function() {
+    document.getElementById('wheel').remove();
+}
+
+swap_background = function() {
+    document.body.classList = 'cat2';
+}
+
+random = function(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }

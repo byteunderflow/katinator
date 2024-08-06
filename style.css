@@ -58,7 +58,7 @@ p {
     height: 50vh;
 }
 
-.loader-container {
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
